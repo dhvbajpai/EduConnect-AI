@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FACULYTICS | Faculty Analytics</title>
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body class="login-active">
+<div class="login-screen" id="loginScreen"><div class="login-card">
+<div class="login-brand"><div class="brand-mark">F</div><div><div style="font-size:21px;font-weight:900;color:#17345f;letter-spacing:.5px">FACULYTICS</div><div style="font-size:11px;color:#718096;margin-top:3px">Faculty & Admin Portal</div></div></div>
+<h1>Welcome back</h1><p class="sub">Sign in to manage attendance, student reports, LMS and placement insights.</p><div class="login-error" id="loginError"></div>
+<form id="loginForm"><div class="field"><label for="teacherUid">Teacher UID</label><input id="teacherUid" autocomplete="username" placeholder="Enter your teacher UID" required></div><div class="field"><label for="teacherPassword">Password</label><input id="teacherPassword" type="password" autocomplete="current-password" placeholder="Enter your password" required></div>
+<div class="field"><label>Captcha</label><div class="captcha-row"><div class="captcha-code" id="captchaCode">A7K4P</div><button type="button" class="btn secondary" id="refreshCaptcha" aria-label="Refresh captcha">↻</button></div><input id="captchaInput" style="margin-top:9px" placeholder="Enter captcha shown above" required></div><button class="btn login-submit" type="submit">Sign in →</button></form>
+<div class="login-links"><button class="link-btn" id="forgotPassword" type="button">Forgot password?</button><span style="color:#8794a7">Faculty access only</span></div>
+<p class="login-note">Demo login: UID <b>FACULTY01</b> · Password <b>Alpha@123</b><br>Prototype only; real authentication needs a secure server.</p>
+</div></div>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">F</div><span>FACULYTICS</span></div>
+    <div class="nav-label">Workspace</div>
+    <nav class="nav" id="nav">
+      <button class="active" data-page="dashboard"><span class="ico">▦</span>Dashboard</button>
+      <button data-page="copilot"><span class="ico">✦</span>Students Doubt <span class="pill purple" style="margin-left:auto">NEW</span></button>
+      <div class="nav-group" id="attendanceNavGroup"><button class="nav-parent" type="button" data-toggle="attendanceNavGroup"><span class="nav-left"><span class="ico">◷</span>Attendance</span><span class="nav-arrow">▸</span></button><div class="nav-submenu"><button data-page="attendance" data-att-view="overview">Attendance overview</button><button data-page="attendance" data-att-view="mark">Mark attendance</button><button data-page="attendance" data-att-view="rectification">Rectification</button><button data-page="attendance" data-att-view="subject" data-subject="C">Programming in C</button><button data-page="attendance" data-att-view="subject" data-subject="Maths">Mathematics</button><button data-page="attendance" data-att-view="subject" data-subject="Physics">Physics</button><button data-page="attendance" data-att-view="subject" data-subject="English">English</button></div></div>
+      <div class="nav-group" id="lmsNavGroup"><button class="nav-parent" type="button" data-toggle="lmsNavGroup"><span class="nav-left"><span class="ico">▤</span>LMS</span><span class="nav-arrow">▸</span></button><div class="nav-submenu"><button data-page="lms" data-lms-tab="courses">Syllabus & Courses</button><button data-page="lms" data-lms-tab="quizzes">Quizzes</button><button data-page="lms" data-lms-tab="assignments">Assignments</button></div></div>
+      <div class="nav-group" id="reportsNavGroup"><button class="nav-parent" type="button" data-toggle="reportsNavGroup"><span class="nav-left"><span class="ico">▥</span>Student Reports</span><span class="nav-arrow">▸</span></button><div class="nav-submenu"><button data-page="reports">Student Reports</button><button data-page="concerns">Student Concerns</button></div></div>
+      <button data-page="engagement"><span class="ico">✦</span>Engagement</button>
+      <button data-page="timetable"><span class="ico">◷</span>Timetable</button>
+      <button data-page="calendar"><span class="ico">▦</span>Academic Calendar</button>
+      <div class="nav-group" id="examinationNavGroup"><button class="nav-parent" type="button" data-toggle="examinationNavGroup"><span class="nav-left"><span class="ico">▤</span>Examination</span><span class="nav-arrow">▸</span></button><div class="nav-submenu"><button data-page="examDatesheet">Datesheet</button><button data-page="examMarks">Marks Update</button><button data-page="examAssignments">Assignments</button><button data-page="paperBuilder">Question Paper Builder</button></div></div>
+      <button data-page="placement"><span class="ico">✧</span>Placement</button>
+      <button data-page="feedback"><span class="ico">☷</span>Feedback</button>
+      <button data-page="support"><span class="ico">♡</span>Help & Support</button>
+      <div class="nav-group" id="facultyNavGroup"><button class="nav-parent" type="button" data-toggle="facultyNavGroup"><span class="nav-left"><span class="ico">♙</span>Faculty / Admin</span><span class="nav-arrow">▸</span></button><div class="nav-submenu"><button data-page="account" data-account-tab="profile">Faculty profile</button><button data-page="account" data-account-tab="password">Change password</button><button data-page="account" data-account-tab="email">Email</button><button data-page="account" data-account-tab="settings">Settings</button><button data-action="logout">Logout</button></div></div>
+    </nav>
+    <div class="sidebar-bottom">Faculty workspace<br><strong>FACULYTICS · Demo prototype</strong><br>Sample data only</div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <div class="search"><span>⌕</span><input id="globalSearch" placeholder="Search student name or UID..." aria-label="Search students"></div>
+      <div class="top-actions"><button class="icon-btn" id="helpTop">? Help</button><div class="account-menu"><button class="profile-trigger" id="profileMenuBtn"><div class="avatar">FA</div><span>Faculty / Admin ▾</span></button><div class="account-pop" id="accountPop"><button onclick="openAccount('profile')">♙ Faculty profile</button><button onclick="openAccount('password')">🔒 Change password</button><button onclick="openAccount('email')">✉ Email</button><button onclick="openAccount('settings')">⚙ Settings</button><button onclick="logout()">↪ Logout</button></div></div></div>
+    </header>
+    <div class="content" id="content"></div>
+  </main>
+</div>
+<div id="modalRoot"></div>
+<div id="toastRoot"></div>
+  <script src="script.js" defer></script>
+
+</body>
+</html>
+
+
+
+
+
